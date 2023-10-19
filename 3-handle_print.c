@@ -16,7 +16,7 @@ int handle_u_specifier(const char *format, va_list args)
 
 	unsigned int num = va_arg(args, unsigned int);
 	char num_str[12];
-	int str_len = itoa(num, num_str, 10);
+	int str_len = _itoa(num, num_str, 10);
 
 	write(1, num_str, str_len);
 	char_type += str_len;
@@ -36,7 +36,7 @@ int handle_o_specifier(const char *format, va_list args)
 
 	unsigned int num = va_arg(args, unsigned int);
 	char oct_str[12];
-	int str_len = itoa(num, oct_str, 8);
+	int str_len = _itoa(num, oct_str, 8);
 
 	write(1, oct_str, str_len);
 	char_type += str_len;
@@ -57,8 +57,9 @@ int handle_x_specifier(const char *format, va_list args)
 	unsigned int num = va_arg(args, unsigned int);
 	char hex_str[8];
 	int str_len = itoa(num, hex_str, 16);
+	int i;
 
-	for (int i = 0; i < str_len; i++)
+	for (i = 0; i < str_len; i++)
 	{
 		hex_str[i] = tolower(hex_str[i]);
 	}
@@ -81,8 +82,9 @@ int handle_X_specifier(const char *format, va_list args)
 	unsigned int num = va_arg(args, unsigned int);
 	char hex_str[8];
 	int str_len = itoa(num, hex_str, 16);
+	int i;
 
-	for (int i = 0; i < str_len; i++)
+	for (i = 0; i < str_len; i++)
 	{
 		hex_str[i] = toupper(hex_str[i]);
 	}

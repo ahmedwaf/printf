@@ -79,7 +79,7 @@ int handle_format_specifier(const char **format, va_list args)
  */
 int write_string(const char *str)
 {
-	int str_len = strlen(str);
+	int str_len = _strlen(str);
 
 	return (write(1, str, str_len));
 }

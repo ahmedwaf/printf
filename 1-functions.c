@@ -51,7 +51,7 @@ int print_string(va_list types, char buffer[],
 	while (str[length] != '\0')
 		length++;
 
-	if (preciision >= 0 && precision < length)
+	if (precision >= 0 && precision < length)
 		length = precision;
 
 	if (width > precision)
@@ -138,7 +138,7 @@ int print_int(va_list types, char buffer[],
 
 	i++;
 
-	return (write_number(is_negative, i, buffer, flags, width, precisuon, size));
+	return (write_number(is_negative, i, buffer, flags, width, precision, size));
 }
 /********** PRINT BINARY **********/
 /**

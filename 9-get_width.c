@@ -16,7 +16,7 @@ int get_width(const char *format, int *i, va_list args)
 
 	while (format[curr_i] != '\0')
 	{
-		if (is_digit(format[curr_i]))
+		if (_isdigit(format[curr_i]))
 		{
 			if (!is_specifier_found)
 			{

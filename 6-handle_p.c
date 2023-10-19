@@ -15,7 +15,7 @@ int handle_p_specifier(const char *format, va_list args)
 	void *ptr = va_arg(args, void*);
 	unsigned long long ptr_val = (unsigned long long) ptr;
 	char ptr_str[19];
-	int str_len = itoa(ptr_val, ptr_str, 16);
+	int str_len = _itoa(ptr_val, ptr_str, 16);
 
 	write(1, "0x", 2);
 	write(1, ptr_str, str_len);
