@@ -1,4 +1,4 @@
-#ifndef MAIIN_H
+#ifndef MAIN_H
 #define MAIN_H
 #include <stdarg.h>
 #include <stdio.h>
@@ -95,5 +95,7 @@ int _isdigit(int c);
 int _itoa(int n, char *str, int base);
 int write_string_special(char *str);
 int write_hex_value(char value);
+long int convert_size_number(long int num, int size);
+long int convert_size_unsgnd(unsigned long int num, int size);
 
 #endif
