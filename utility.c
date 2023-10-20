@@ -33,7 +33,7 @@ int _isdigit(int c)
  * @base: The base for the conversion (e.g., 10 for decimal).
  * Return: A pointer to the resulting string.
  */
-char *_itoa(int n, char *str, int base)
+int _itoa(int n, char *str, int base)
 {
 	int i = 0;
 	int isNegative = 0;
@@ -44,7 +44,7 @@ char *_itoa(int n, char *str, int base)
 	{
 		str[i++] = '0';
 		str[i] = '\0';
-		return str;
+		return (i);
 	}
 
 	if (n < 0 && base != 10)
@@ -75,7 +75,7 @@ char *_itoa(int n, char *str, int base)
 		end--;
 	}
 
-	return (str);
+	return (i);
 }
 /**
  * write_string_special - Write a string with non-printable characters.

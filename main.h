@@ -71,7 +71,7 @@ int write_character(char c);
 int handle_format_specifier(const char **format, va_list args);
 int write_string(const char *str);
 /* 6-handle_p.c */
-int handle_p_specifier(const char *format, va_list args);
+int handle_p_specifier(va_list args);
 /* 8-get_size.c */
 int handle_di_specifier(const char *format, va_list args);
 int handle_u_specifier(const char *format, va_list args);
@@ -91,7 +91,7 @@ int write_pointer(char buffer[], int ind, int length, int width,
 /* utility.c */
 int _strlen(const char *str);
 int _isdigit(int c);
-char *_itoa(int n, char *str, int base);
+int _itoa(int n, char *str, int base);
 int write_string_special(char *str);
 int write_hex_value(char value);
 

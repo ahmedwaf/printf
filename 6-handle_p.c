@@ -8,12 +8,12 @@
  * Return: The number of characters printed.
  */
 
-int handle_p_specifier(const char *format, va_list args)
+int handle_p_specifier(va_list args)
 {
 	int char_type = 2;
 
 	void *ptr = va_arg(args, void*);
-	unsigned long long ptr_val = (unsigned long long) ptr;
+	unsigned long ptr_val = (unsigned long) ptr;
 	char ptr_str[19];
 	int str_len = _itoa(ptr_val, ptr_str, 16);
 
