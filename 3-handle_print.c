@@ -13,11 +13,39 @@
 int handle_u_specifier(const char *format, va_list args)
 {
 	int char_type = 0;
-
-	unsigned int num = va_arg(args, unsigned int);
+	int width = 0;
+	int str_len;
+	unsigned int num;
 	char num_str[12];
-	int str_len = _itoa(num, num_str, 10);
 
+	if (*++format == '*')
+	{
+		width = va_arg(args, int);
+		format++;
+	}
+	else
+	{
+		while (isdigit(*format))
+		{
+			width = width * 10 + (*format - '0');
+			format++;
+		}
+	}
+	num = va_arg(args, unsigned int);
+	_itoa(num, num_str, 10);
+	str_len = strlen(num_str);
+
+	if (width > str_len)
+	{
+		int padding = width - str_len;
+		int i;
+
+		for (i = 0; i < padding; i++)
+		{
+			write(1, " ", 1);
+			char_type++;
+		}
+	}
 	write(1, num_str, str_len);
 	char_type += str_len;
 	return (char_type);
@@ -33,11 +61,39 @@ int handle_u_specifier(const char *format, va_list args)
 int handle_o_specifier(const char *format, va_list args)
 {
 	int char_type = 0;
-
-	unsigned int num = va_arg(args, unsigned int);
+	int str_len;
+	int width = 0;
 	char oct_str[12];
-	int str_len = _itoa(num, oct_str, 8);
+	unsigned int num;
 
+	if (*++format == '*')
+	{
+		width = va_arg(args, int);
+		format++;
+	}
+	else
+	{
+		while (isdigit(*format))
+		{
+			width = width * 10 + (*format - '0');
+			format++;
+		}
+	}
+	num = va_arg(args, unsigned int);
+	_itoa(num, oct_str, 8);
+	str_len = strlen(oct_str);
+
+	if (width > str_len)
+	{
+		int padding = width - str_len;
+		int i;
+
+		for (i = 0; i < padding; i++)
+		{
+			write(1, " ", 1);
+			char_type++;
+		}
+	}
 	write(1, oct_str, str_len);
 	char_type += str_len;
 	return (char_type);
@@ -52,13 +108,40 @@ int handle_o_specifier(const char *format, va_list args)
  */
 int handle_x_specifier(const char *format, va_list args)
 {
-	int char_type = 0;
-
-	unsigned int num = va_arg(args, unsigned int);
-	char hex_str[8];
-	int str_len = itoa(num, hex_str, 16);
 	int i;
+	int char_type = 0;
+	int width = 0;
+	unsigned int num;
+	int str_len;
+	char hex_str[8];
 
+	if (*++format == '*')
+	{
+		width = va_arg(args, int);
+		format++;
+	}
+	else
+	{
+		while (isdigit(*format))
+		{
+			width = width * 10 + (*format - '0');
+			format++;
+		}
+	}
+	num = va_arg(args, unsigned int);
+	_itoa(num, hex_str, 16);
+	str_len = strlen(hex_str);
+
+	if (width > str_len)
+	{
+		int padding = width - str_len;
+
+		for (i = 0; i < padding; i++)
+		{
+			write(1, " ", 1);
+			char_type++;
+		}
+	}
 	for (i = 0; i < str_len; i++)
 	{
 		hex_str[i] = tolower(hex_str[i]);
@@ -78,15 +161,38 @@ int handle_x_specifier(const char *format, va_list args)
 int handle_X_specifier(const char *format, va_list args)
 {
 	int char_type = 0;
-
-	unsigned int num = va_arg(args, unsigned int);
+	int width = 0;
 	char hex_str[8];
-	int str_len = itoa(num, hex_str, 16);
 	int i;
+	int str_len;
+	unsigned int num;
 
-	for (i = 0; i < str_len; i++)
+	if (*++format == '*')
 	{
-		hex_str[i] = toupper(hex_str[i]);
+		width = va_arg(args, int);
+		format++;
+	}
+	else
+	{
+		while (isdigit(*format))
+		{
+			width = width * 10 + (*format - '0');
+			format++;
+		}
+	}
+	num = va_arg(args, unsigned int);
+	_itoa(num, hex_str, 16);
+	str_len = strlen(hex_str);
+
+	if (width > str_len)
+	{
+		int padding = width - str_len;
+
+		for (i = 0; i < padding; i++)
+		{
+			write(1, " ", 1);
+			char_type++;
+		}
 	}
 	write(1, hex_str, str_len);
 	char_type += str_len;
