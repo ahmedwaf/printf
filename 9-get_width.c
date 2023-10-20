@@ -12,7 +12,7 @@ int get_width(const char *format, int *i, va_list args)
 {
 	int curr_i = *i + 1;
 	int width = -1;
-	bool is_specifier_found = false;
+	bool is_specifier_found = 0;
 
 	while (format[curr_i] != '\0')
 	{
@@ -20,7 +20,7 @@ int get_width(const char *format, int *i, va_list args)
 		{
 			if (!is_specifier_found)
 			{
-				is_specifier_found = true;
+				is_specifier_found = 1;
 				width = 0;
 			}
 			width *= 10;
@@ -30,7 +30,7 @@ int get_width(const char *format, int *i, va_list args)
 		{
 			if (!is_specifier_found)
 			{
-				is_specifier_found = true;
+				is_specifier_found = 1;
 				width = va_arg(args, int);
 			}
 			break;
